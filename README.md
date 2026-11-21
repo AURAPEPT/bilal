@@ -34,7 +34,17 @@ Produits, prix et effets sont inventés. Aujourd'hui en France, un médicament s
 - `IZAMPEPTIDE-maquette-etiquette.pdf` : la même maquette en PDF.
 
 ## Invitation fiançailles Shayma & Bilal (`fiancailles/`)
-Site d'invitation animé, thème marocain et lune (« Qamary »).
-- `fiancailles/index.html` : page à ouvrir (ou `https://<compte>.github.io/bilal/fiancailles/` une fois GitHub Pages activé).
-- Les infos de la soirée (date, lieu, adresse, numéro WhatsApp) se remplissent en haut de `fiancailles/app.js`, dans `CONFIG`. Tant qu'un champ est vide, le site affiche « à venir » et cache le bouton correspondant.
-- Sources des textes : Coran 78:8 et 30:21 (traduction Muhammad Hamidullah, texte vérifié sur quran.com) ; invocation pour les mariés : Sunan Abî Dâwûd n°2130, Jâmi‘ at-Tirmidhî n°1091.
+Site d'invitation cinématique, thème marocain, autour de la lune (« Qamary »).
+
+**Le parcours** : une vraie lune en 3D (cartes NASA) dans une arche marocaine → on appuie → plongée jusqu'au cratère Copernic (relief réel) → lever de Terre, verset 78:8 → deux lumières (Shayma et Bilal) tournent au-dessus du cratère et fusionnent en leurs prénoms → au scroll : versets, hadiths sur le mariage, rendez-vous, douâ, et la lune passe de pleine lune à croissant.
+
+**À personnaliser** (sans rien recompiler) : `fiancailles/config.js`
+- `date`, `lieu`, `adresse`, `whatsapp` : tant qu'un champ est vide, le site affiche « à venir » et cache le bouton lié.
+- `musique` : dépose ton fichier audio dans `fiancailles/assets/musique.mp3` (ou change le chemin). S'il n'existe pas, le bouton son est masqué. Le son démarre en fondu quand on appuie sur la lune.
+
+**Modifier le code** : les sources sont dans `fiancailles/src/` (Three.js, GSAP, Lenis). Après modification : `cd fiancailles && npm install && npm run build` (génère `dist/main.js`).
+
+**Sources des textes et images**
+- Versets : texte arabe et traduction Muhammad Hamidullah via quran.com (78:8, 30:21, 2:187 extrait, 25:74).
+- Hadiths : texte arabe et jugements d'authenticité via la base hadith-api (fawazahmed0) : Ibn Mâjah 1847, Muslim 1467, Tirmidhî 3895 et 1162, Abû Dâwûd 2130. Les traductions marquées « trad. libre » sont rédigées pour l'invitation.
+- Lune : NASA SVS « CGI Moon Kit » (SVS 4720, couleurs LRO/LROC, relief LRO/LOLA). Terre : NASA SVS « Blue Marble » (SVS 2915).
