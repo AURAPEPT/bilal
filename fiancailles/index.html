@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shayma & Bilal — Fiançailles</title>
+<meta name="description" content="Invitation aux fiançailles de Shayma & Bilal">
+<meta name="theme-color" content="#060818">
+<meta property="og:title" content="Shayma & Bilal — Fiançailles">
+<meta property="og:description" content="Appuyez sur la lune…">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="locked">
+
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="pattern" aria-hidden="true"></div>
+<div id="flash" aria-hidden="true"></div>
+
+<!-- ============ SCÈNE 1 : LA LUNE ============ -->
+<section id="intro">
+  <svg class="arch" viewBox="0 0 400 600" preserveAspectRatio="none" aria-hidden="true">
+    <path class="arch-out" d="M20,600 L20,250 C20,110 110,30 200,8 C290,30 380,110 380,250 L380,600" vector-effect="non-scaling-stroke"/>
+    <path class="arch-in" d="M38,600 L38,256 C38,128 120,52 200,30 C280,52 362,128 362,256 L362,600" vector-effect="non-scaling-stroke"/>
+  </svg>
+
+  <div class="intro-top">
+    <p class="qamar-ar">قمري</p>
+    <p class="qamar-lat">Qamary</p>
+  </div>
+
+  <div id="moonWrap">
+    <div class="halo"></div>
+    <div class="ripple"></div><div class="ripple r2"></div>
+    <div class="orbit"><i></i><i></i><i></i><i></i><i></i></div>
+    <button id="moon" class="moon" aria-label="Appuyer sur la lune pour ouvrir l'invitation">
+      <span class="moon-tex"></span>
+      <span class="crater c1"></span><span class="crater c2"></span><span class="crater c3"></span>
+      <span class="crater c4"></span><span class="crater c5"></span><span class="crater c6"></span>
+      <span class="moon-shade"></span>
+    </button>
+  </div>
+
+  <p class="tap">Appuyez sur la lune</p>
+</section>
+
+<!-- ============ SCÈNE 2 : SUR LA LUNE ============ -->
+<main id="world" hidden>
+
+  <section id="hero">
+    <div class="earth" aria-hidden="true"></div>
+    <div class="lanterns" aria-hidden="true">
+      <div class="lantern l1"></div><div class="lantern l2"></div><div class="lantern l3"></div>
+    </div>
+    <canvas id="fx" aria-hidden="true"></canvas>
+
+    <div class="hero-verse">
+      <p class="bism" lang="ar" dir="rtl">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+      <p class="ar big" lang="ar" dir="rtl">وَخَلَقْنَـٰكُمْ أَزْوَٰجًا</p>
+      <p class="fr">« Nous vous avons créés en couples »</p>
+      <p class="ref">Sourate An-Naba (78), verset 8</p>
+    </div>
+
+    <h1 class="sr-only">Shayma & Bilal</h1>
+    <div class="hero-sub">
+      <p>unissent leurs cœurs</p>
+      <p class="small">et vous invitent à célébrer leurs fiançailles</p>
+    </div>
+    <div class="scroll-hint"><span></span>Glissez</div>
+    <div class="ground" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  </section>
+
+  <section class="block" id="verset">
+    <div class="star-orn reveal" aria-hidden="true"></div>
+    <p class="ar verse reveal words" lang="ar" dir="rtl">وَمِنْ ءَايَـٰتِهِۦٓ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَٰجًا لِّتَسْكُنُوٓا۟ إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِى ذَٰلِكَ لَـَٔايَـٰتٍ لِّقَوْمٍ يَتَفَكَّرُونَ</p>
+    <p class="fr reveal" style="--d:.3s">« Et parmi Ses signes Il a créé de vous, pour vous, des épouses pour que vous viviez en tranquillité avec elles et Il a mis entre vous de l’affection et de la bonté. Il y a en cela des preuves pour des gens qui réfléchissent. »</p>
+    <p class="ref reveal" style="--d:.5s">Sourate Ar-Rûm (30), verset 21 · traduction Muhammad Hamidullah</p>
+  </section>
+
+  <section class="block" id="union">
+    <div class="arch-card reveal">
+      <p class="eyebrow">Par la grâce d’Allah</p>
+      <h2 class="script">Notre union</h2>
+      <div class="duo">
+        <span class="name">Shayma</span>
+        <span class="ring" aria-hidden="true"></span>
+        <span class="name">Bilal</span>
+      </div>
+      <p>Deux âmes créées par paire, qui se sont trouvées sous la même lune.</p>
+      <p>Avec la bénédiction de nos familles, Bilal et Shayma — sa <em>Qamary</em>, sa lune — ont choisi d’unir leurs vies.</p>
+      <p class="accent">Ils ont l’immense joie de vous convier à leurs fiançailles.</p>
+    </div>
+  </section>
+
+  <section class="block" id="rdv">
+    <div class="arch-card reveal">
+      <p class="eyebrow">Le rendez-vous</p>
+      <h2 class="script">Sous la lune</h2>
+      <div class="info">
+        <div><span class="lbl">Date</span><span id="iDate"></span></div>
+        <div><span class="lbl">Heure</span><span id="iHeure"></span></div>
+        <div><span class="lbl">Lieu</span><span id="iLieu"></span></div>
+      </div>
+      <div id="countdown" class="countdown" hidden>
+        <div><b id="cdJ">0</b><small>jours</small></div>
+        <div><b id="cdH">0</b><small>heures</small></div>
+        <div><b id="cdM">0</b><small>min</small></div>
+        <div><b id="cdS">0</b><small>sec</small></div>
+      </div>
+      <div class="btns">
+        <a id="bMaps" class="btn" target="_blank" rel="noopener" hidden>Itinéraire</a>
+        <button id="bCal" class="btn" hidden>Ajouter au calendrier</button>
+        <a id="bRsvp" class="btn gold" target="_blank" rel="noopener" hidden>Confirmer ma présence</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="dua">
+    <div class="star-orn reveal" aria-hidden="true"></div>
+    <p class="ar reveal words" lang="ar" dir="rtl">بَارَكَ ٱللَّهُ لَكَ وَبَارَكَ عَلَيْكَ وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</p>
+    <p class="fr reveal" style="--d:.3s">« Qu’Allah te bénisse, qu’Il répande Sa bénédiction sur toi et qu’Il vous réunisse dans le bien. »</p>
+    <p class="ref reveal" style="--d:.5s">Invocation du Prophète ﷺ pour les nouveaux mariés · Sunan Abî Dâwûd n°2130, Jâmi‘ at-Tirmidhî n°1091</p>
+    <footer class="reveal" style="--d:.7s">
+      <p class="script big">Shayma & Bilal</p>
+      <p class="qamar-ar small">قمري</p>
+    </footer>
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

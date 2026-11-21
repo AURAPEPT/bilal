@@ -32,3 +32,9 @@ Produits, prix et effets sont inventés. Aujourd'hui en France, un médicament s
 ## Étiquetage (`etiquetage/`)
 - `IZAMPEPTIDE-maquette-etiquette.docx` : maquette d'étiquette modifiable sous Word, avec la légende des mentions et les sources.
 - `IZAMPEPTIDE-maquette-etiquette.pdf` : la même maquette en PDF.
+
+## Invitation fiançailles Shayma & Bilal (`fiancailles/`)
+Site d'invitation animé, thème marocain et lune (« Qamary »).
+- `fiancailles/index.html` : page à ouvrir (ou `https://<compte>.github.io/bilal/fiancailles/` une fois GitHub Pages activé).
+- Les infos de la soirée (date, lieu, adresse, numéro WhatsApp) se remplissent en haut de `fiancailles/app.js`, dans `CONFIG`. Tant qu'un champ est vide, le site affiche « à venir » et cache le bouton correspondant.
+- Sources des textes : Coran 78:8 et 30:21 (traduction Muhammad Hamidullah, texte vérifié sur quran.com) ; invocation pour les mariés : Sunan Abî Dâwûd n°2130, Jâmi‘ at-Tirmidhî n°1091.
