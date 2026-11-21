@@ -82,41 +82,6 @@ if (matchMedia('(pointer: fine)').matches && !reduce) {
   document.addEventListener('pointerout', (e) => { if (e.target.closest('a,button,summary')) cursor.classList.remove('big'); });
 }
 
-/* ---------------- magie : traînée d'étincelles + étoiles filantes ---------------- */
-const magic = (() => {
-  const cv = $('#magic'), g = cv.getContext('2d'); const sky = $('#shooting'), sg = sky.getContext('2d');
-  let W = 0, H = 0, DPR = Math.min(devicePixelRatio || 1, 2); const P = []; const shoot = [];
-  const size = () => { W = innerWidth; H = innerHeight; [cv, sky].forEach((c) => { c.width = W * DPR; c.height = H * DPR; });
-    g.setTransform(DPR, 0, 0, DPR, 0, 0); sg.setTransform(DPR, 0, 0, DPR, 0, 0); };
-  size(); addEventListener('resize', size);
-  const cols = ['#fff3c4', '#ffd27a', '#ffb3e1', '#bfe3ff', '#ffffff'];
-  const add = (x, y, n = 1, spd = 1) => { for (let i = 0; i < n && P.length < 260; i++) { const a = Math.random() * Math.PI * 2, v = (0.3 + Math.random() * 1.6) * spd;
-    P.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 0.4 * spd, life: 1, s: 2 + Math.random() * 4.5, c: cols[(Math.random() * cols.length) | 0], r: Math.random() * 3 }); } };
-  const star = (ctx, x, y, s, rot) => { ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.beginPath();
-    for (let i = 0; i < 8; i++) { const r = i % 2 ? s * 0.28 : s; const a = (i * Math.PI) / 4; ctx.lineTo(Math.cos(a) * r, Math.sin(a) * r); } ctx.closePath(); ctx.fill(); ctx.restore(); };
-  let lx = -1, ly = -1;
-  addEventListener('pointermove', (e) => { if (reduce) return; const d = Math.hypot(e.clientX - lx, e.clientY - ly); if (d > 6) { add(e.clientX, e.clientY, Math.min(3, 1 + (d / 25) | 0), 0.6); lx = e.clientX; ly = e.clientY; } }, { passive: true });
-  addEventListener('pointerdown', (e) => { if (!reduce) add(e.clientX, e.clientY, 10, 1.4); }, { passive: true });
-  gsap.ticker.add(() => {
-    g.clearRect(0, 0, W, H); g.globalCompositeOperation = 'lighter';
-    for (let i = P.length - 1; i >= 0; i--) { const p = P[i]; p.x += p.vx; p.y += p.vy; p.vy += 0.03; p.vx *= 0.98; p.life -= 0.018; p.r += 0.05;
-      if (p.life <= 0) { P.splice(i, 1); continue; }
-      g.globalAlpha = p.life; g.fillStyle = p.c; g.shadowColor = p.c; g.shadowBlur = 8; star(g, p.x, p.y, p.s * (0.4 + p.life * 0.6), p.r); }
-    g.globalAlpha = 1; g.shadowBlur = 0;
-    // étoiles filantes (derrière le contenu)
-    sg.clearRect(0, 0, W, H);
-    if (!reduce && Math.random() < 0.007 && shoot.length < 2) shoot.push({ x: Math.random() * W * 0.8 + W * 0.2, y: Math.random() * H * 0.35, vx: -(7 + Math.random() * 6), vy: 3 + Math.random() * 2.5, life: 1 });
-    for (let i = shoot.length - 1; i >= 0; i--) { const s = shoot[i]; s.x += s.vx; s.y += s.vy; s.life -= 0.016; if (s.life <= 0) { shoot.splice(i, 1); continue; }
-      const gr = sg.createLinearGradient(s.x, s.y, s.x - s.vx * 16, s.y - s.vy * 16); gr.addColorStop(0, `rgba(255,248,225,${s.life})`); gr.addColorStop(1, 'rgba(255,190,240,0)');
-      sg.strokeStyle = gr; sg.lineWidth = 2; sg.lineCap = 'round'; sg.beginPath(); sg.moveTo(s.x, s.y); sg.lineTo(s.x - s.vx * 16, s.y - s.vy * 16); sg.stroke();
-      sg.fillStyle = `rgba(255,255,255,${s.life})`; star(sg, s.x, s.y, 5, s.life * 4); }
-  });
-  return { burst: (x, y, n = 40) => add(x, y, n, 2.4) };
-})();
-
-// petites étoiles qui scintillent autour des titres
-$$('[data-twinkle]').forEach((el) => { for (let i = 0; i < 4; i++) { const s = document.createElement('i'); s.className = 'tw'; s.style.left = `${8 + Math.random() * 84}%`; s.style.top = `${Math.random() * 90}%`; s.style.animationDelay = `${(Math.random() * 3).toFixed(2)}s`; s.style.setProperty('--s', (0.6 + Math.random() * 0.8).toFixed(2)); el.appendChild(s); } });
-
 /* ---------------- infos de la soirée ---------------- */
 function fillInfos() {
   const d = CONFIG.date ? new Date(CONFIG.date) : null; const ok = d && !isNaN(d);
@@ -190,8 +155,6 @@ function introReveal() {
     .to(S.fx, { fade: 0, duration: 2.4, ease: 'power2.out' }, 0.2)
     .fromTo(S.sun, { theta: 122 * DEG }, { theta: 35 * DEG, duration: 4.6, ease: 'power2.inOut' }, 0.2)
     .to(S.moon, { halo: 1, duration: 3 }, 1.8)
-    .to(S.clouds, { a: 1, duration: 3.5, ease: 'power2.out' }, 1.2)
-    .to(S.carpet, { a: 1, duration: 2 }, 3.2)
     .fromTo(S.cam, { z: sc.introDist() * 1.4 }, { z: sc.introDist(), duration: 5, ease: 'expo.out' }, 0.2)
     .add(drawSVG($('.intro-arch'), { duration: 2.6 }), 1.4)
     .from('.kicker', { opacity: 0, y: 16, duration: 1.2, ease: 'power3.out' }, 2.2)
@@ -213,7 +176,6 @@ function armEnter() {
     if (entered) return;
     const hit = sc.hitMoon(e.clientX, e.clientY);
     canvas.style.cursor = hit ? 'pointer' : ''; cursor.classList.toggle('big', hit);
-    if (hit && Math.random() < 0.25) magic.burst(e.clientX, e.clientY, 1);
   };
   addEventListener('pointermove', onMove);
   canvas.addEventListener('click', (e) => { if (sc.hitMoon(e.clientX, e.clientY)) enter(); });
@@ -225,8 +187,6 @@ function enter() {
   if (entered) return; entered = true;
   startMusic();
   navigator.vibrate?.(18);
-  magic.burst(innerWidth / 2, innerHeight / 2, 70);
-  gsap.to(sc.S.carpet, { a: 0, duration: 0.8 });
   cursor.classList.remove('big');
   gsap.killTweensOf('.enter-ring');
   const S = sc.S, L = sc.poses;
@@ -250,8 +210,7 @@ function enter() {
     // descente vers Copernic, la caméra se redresse vers l'horizon
     .to(S.cam, { x: L.landPos.x, y: L.landPos.y, z: L.landPos.z, tx: L.landTarget.x, ty: L.landTarget.y, tz: L.landTarget.z, fov: L.landFov(), duration: 3.8, ease: 'power3.inOut' }, 3.3)
     .to(S.shadow, { amt: 1, duration: 2.6, ease: 'power1.inOut' }, 4.2)
-    .to(S.fx, { exposure: 0.88, bloom: 0.3, duration: 3, ease: 'power1.inOut' }, 4.0)
-    .to(S.clouds, { a: 0, duration: 1.5 }, 3.6)
+    .to(S.fx, { exposure: 1.5, bloom: 0.4, duration: 3, ease: 'power1.inOut' }, 4.0)
     .to('.frame-fixed', { opacity: 1, duration: 2 }, 5.8)
     // lever de Terre
     .set(S.earth, { show: 1 }, 5.0)
@@ -273,7 +232,7 @@ function enter() {
     .add(() => navigator.vibrate?.([25, 40, 35]), 13.15)
     .to(S.orbs, { i: 0, show: 0, duration: 1.2, ease: 'power2.out' }, 13.25)
     .to(S.fx, { flash: 0, duration: 1.5, ease: 'power2.out' }, 13.25)
-    .to(S.fx, { bloom: 0.38, duration: 3, ease: 'power2.out' }, 13.3)
+    .to(S.fx, { bloom: mobile ? 0.42 : 0.55, duration: 3, ease: 'power2.out' }, 13.3)
     .to(S.burst, { a: 0, duration: 1.8, ease: 'power2.out' }, 13.3)
     .fromTo(S.burst, { ring: 0 }, { ring: 1, duration: 2.6, ease: 'expo.out' }, 13.15)
     .fromTo(S.names, { prog: 0 }, { prog: 1, duration: 3.3, ease: 'none' }, 13.15)
@@ -289,7 +248,7 @@ $('#skip').addEventListener('click', () => master && master.progress(1));
 function unlock() {
   if (unlocked) return; unlocked = true;
   document.body.classList.remove('locked');
-  if (sc) { sc.S.mode = 'scroll'; sc.buildScrollPath(); sc.S.clouds.a = 1; sc.S.carpet.a = 1; }
+  if (sc) { sc.S.mode = 'scroll'; sc.buildScrollPath(); }
   lenis.start();
   setupScroll();
   ScrollTrigger.refresh();
