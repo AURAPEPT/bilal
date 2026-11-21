@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Shayma & Bilal — Fiançailles</title>
 <meta name="description" content="Invitation aux fiançailles de Shayma & Bilal. Appuyez sur la lune…">
-<meta name="theme-color" content="#04050d">
+<meta name="theme-color" content="#0b0f3a">
 <meta property="og:title" content="Shayma & Bilal — Fiançailles">
 <meta property="og:description" content="Appuyez sur la lune…">
 <meta property="og:image" content="https://aurapept.github.io/bilal/fiancailles/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="config.js"></script>
 </head>
@@ -49,6 +49,8 @@
 </svg>
 
 <canvas id="gl" aria-hidden="true"></canvas>
+<canvas id="shooting" aria-hidden="true"></canvas>
+<canvas id="magic" aria-hidden="true"></canvas>
 <img id="fallback" src="assets/moon_still.jpg" alt="" hidden>
 <div class="grain" aria-hidden="true"></div>
 <div class="frame-fixed" aria-hidden="true"><span class="fc tl"></span><span class="fc tr"></span><span class="fc bl"></span><span class="fc br"></span></div>
@@ -65,7 +67,7 @@
   <div class="intro-arch" data-arch data-lobes="13"></div>
   <div class="intro-top">
     <p class="kicker">Invitation</p>
-    <p class="qamar" lang="ar" dir="rtl">قمري</p>
+    <p class="qamar" lang="ar" dir="rtl" data-twinkle>قمري</p>
     <p class="qamar-lat">Qamary</p>
   </div>
   <div class="intro-bottom">
@@ -116,7 +118,7 @@
     <article class="card arch-card" data-corners>
       <div class="card-arch" data-arch data-fill data-lobes="9"></div>
       <p class="eyebrow rv">Par la grâce d’Allah</p>
-      <h2 class="script rv">Notre union</h2>
+      <h2 class="script rv" data-twinkle>Notre union</h2>
       <div class="duo rv">
         <span class="name">Shayma</span>
         <span class="rings" aria-hidden="true"><i></i><i></i></span>
@@ -180,7 +182,7 @@
     <article class="card arch-card" data-corners>
       <div class="card-arch" data-arch data-fill data-lobes="9"></div>
       <p class="eyebrow rv">Le rendez-vous</p>
-      <h2 class="script rv">Sous la lune</h2>
+      <h2 class="script rv" data-twinkle>Sous la lune</h2>
       <div class="zband inline rv"></div>
       <div class="info rv">
         <div><span class="lbl">Date</span><span id="iDate"></span></div>
@@ -214,7 +216,7 @@
   </section>
 
   <footer class="sec plain" id="fin">
-    <p class="script huge rv">Shayma & Bilal</p>
+    <p class="script huge rv" data-twinkle>Shayma & Bilal</p>
     <p class="qamar small rv" lang="ar" dir="rtl">قمري</p>
     <p class="fr rv">Nous avons hâte de partager ce moment avec vous.</p>
     <details class="sources rv">

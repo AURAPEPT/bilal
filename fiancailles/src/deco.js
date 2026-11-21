@@ -44,12 +44,12 @@ export function archSVG(w, h, { lobes = 11, glow = true, fill = false } = {}) {
   return `<svg viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" fill="none" aria-hidden="true">
     <defs><linearGradient id="ag${w | 0}" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#f3dc9e"/><stop offset=".5" stop-color="${GOLD}"/><stop offset="1" stop-color="#8a6a2e" stop-opacity=".0"/></linearGradient>
-      <linearGradient id="af${w | 0}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0e3a3a" stop-opacity=".82"/><stop offset=".35" stop-color="#070b1e" stop-opacity=".9"/><stop offset="1" stop-color="#05061a" stop-opacity=".94"/></linearGradient></defs>
+      <linearGradient id="af${w | 0}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a2f8f" stop-opacity=".88"/><stop offset=".38" stop-color="#16195e" stop-opacity=".93"/><stop offset="1" stop-color="#0a0d38" stop-opacity=".96"/></linearGradient></defs>
     ${fill ? `<path d="${outer} Z" fill="url(#af${w | 0})"/>` : ''}
     <path class="draw" d="${outer}" stroke="url(#ag${w | 0})" stroke-width="1.6"${glow ? ' filter="drop-shadow(0 0 6px rgba(217,181,108,.55))"' : ''}/>
     <path class="draw" d="${mid}" stroke="url(#ag${w | 0})" stroke-width=".7" opacity=".55"/>
     <path class="draw" d="${inner}" stroke="url(#ag${w | 0})" stroke-width="1.1"/>
-    <polygon class="pop" points="${starPts(w / 2, apexY + 2, 7)}" fill="#0a0d24" stroke="${GOLD}" stroke-width="1.1" transform="translate(0,-10)"/>
+    <polygon class="pop" points="${starPts(w / 2, apexY + 2, 7)}" fill="#16195e" stroke="${GOLD}" stroke-width="1.1" transform="translate(0,-10)"/>
     <circle class="pop" cx="${w / 2}" cy="${apexY - 8}" r="1.6" fill="${GOLD}"/>
   </svg>`;
 }
@@ -57,7 +57,7 @@ export function archSVG(w, h, { lobes = 11, glow = true, fill = false } = {}) {
 // bande de zellige (étoiles khatam colorées + croisillons)
 export function zelligeURI() {
   const cols = ['#1d4f8f', '#0f6b57', '#a8462a', '#0f6b57'];
-  let s = `<svg xmlns='http://www.w3.org/2000/svg' width='240' height='60' viewBox='0 0 240 60'><rect width='240' height='60' fill='#0a0e26'/>`;
+  let s = `<svg xmlns='http://www.w3.org/2000/svg' width='240' height='60' viewBox='0 0 240 60'><rect width='240' height='60' fill='#141a5c'/>`;
   for (let i = 0; i < 4; i++) {
     const cx = 30 + i * 60;
     s += `<polygon points='${starPts(cx, 30, 25)}' fill='${cols[i]}' stroke='${GOLD}' stroke-width='1.2'/>`;
@@ -85,7 +85,7 @@ export function dividerSVG() {
     <linearGradient id="dr" x1="1" x2="0"><stop offset="0" stop-color="${GOLD}" stop-opacity="0"/><stop offset="1" stop-color="${GOLD}"/></linearGradient></defs>
     <path class="draw" d="M8 15 H146" stroke="url(#dl)" stroke-width="1"/><path class="draw" d="M352 15 H214" stroke="url(#dr)" stroke-width="1"/>
     <polygon class="pop" points="152,15 158,10 164,15 158,20" fill="${GOLD}"/><polygon class="pop" points="208,15 202,10 196,15 202,20" fill="${GOLD}"/>
-    <polygon class="pop spin" points="${starPts(180, 15, 12)}" stroke="${GOLD}" stroke-width="1.2" fill="#0a0d24"/>
+    <polygon class="pop spin" points="${starPts(180, 15, 12)}" stroke="${GOLD}" stroke-width="1.2" fill="#16195e"/>
     <polygon class="pop" points="${starPts(180, 15, 5, Math.PI / 8)}" fill="${GOLD}"/>
   </svg>`;
 }
